@@ -69,8 +69,13 @@
  By default is `CGSizeMake(0,-1)`. */
 @property (nonatomic) CGSize textShadowOffset;
 
+/** Specifies the corner radius for the highlight's gradient (when selected)
+
+ By default is `3.0`. */
+@property (readwrite) CGFloat highlightCornerRadius;
+
 /** Specifies the start color for the highlight's gradient (when selected)
- 
+
  By default is `[UIColor colorWithWhite:0.4 alpha:1.0]`. */
 @property (nonatomic, retain) UIColor *highlightGradientStartColor;
 
