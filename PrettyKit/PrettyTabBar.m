@@ -123,8 +123,8 @@
     self.separatorLineColor = default_separator_line_color;
     
     // pretty button stuff
-    __prettyTabBarButtons = [[NSMutableArray arrayWithCapacity:5] retain];
-    __originalTabBarButtons = [[NSMutableArray arrayWithCapacity:0] retain];
+    self._prettyTabBarButtons = [NSMutableArray arrayWithCapacity:5];
+    self._originalTabBarButtons = [NSMutableArray arrayWithCapacity:0];
     self.prettyButtonHighlightedImages = nil;
     
     self.prettyButtonHighlightCornerRadius = default_highlight_corner_radius;
