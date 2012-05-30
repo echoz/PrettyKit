@@ -170,7 +170,7 @@
     }
     
     CGSize titleSize = [_title sizeWithFont:self.font constrainedToSize:CGSizeMake(self.frame.size.width, 10.0)];
-    [_title drawInRect:CGRectMake((self.frame.size.width - titleSize.width)/2, self.frame.size.height - titleSize.height, titleSize.width, titleSize.height) withFont:self.font];
+    [_title drawInRect:CGRectMake((self.frame.size.width - titleSize.width)/2, self.frame.size.height - titleSize.height - 2, titleSize.width, titleSize.height) withFont:self.font];
     
     CGContextRestoreGState(context);
     return titleSize;
