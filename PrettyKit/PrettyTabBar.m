@@ -50,6 +50,7 @@
 #define default_badge_shadow_opacity                    0.75
 #define default_badge_shadow_offset                     CGSizeMake(0,2)
 #define default_badge_text_color                        [UIColor whiteColor]
+#define default_highlight_corner_radius                 3.0
 #define default_highlight_gradient_start_color          [UIColor colorWithWhite:0.35 alpha:1.0] 
 #define default_highlight_gradient_end_color            [UIColor colorWithWhite:0.2 alpha:1.0]
 #define default_highlighted_image_gradient_start_color  [UIColor colorWithRed:0.276 green:0.733 blue:1.000 alpha:1.000]
@@ -69,7 +70,7 @@
 
 @synthesize prettyButtonHighlightedImageGradientStartColor, prettyButtonHighlightedImageGradientEndColor, prettyButtonHighlightedImages;
 @synthesize prettyButtonTitleFont, prettyButtonTitleTextColor, prettyButtonTitleHighlightedTextColor, prettyButtonTitleTextShadowOpacity, prettyButtonTitleTextShadowOffset;
-@synthesize prettyButtonHighlightGradientStartColor, prettyButtonHighlightGradientEndColor, prettyButtonHighlightImage;
+@synthesize prettyButtonHighlightGradientStartColor, prettyButtonHighlightGradientEndColor, prettyButtonHighlightImage, prettyButtonHighlightCornerRadius;
 @synthesize prettyButtonBadgeBorderColor, prettyButtonBadgeGradientStartColor, prettyButtonBadgeGradientEndColor, prettyButtonBadgeShadowOpacity, prettyButtonBadgeShadowOffset, prettyButtonBadgeFont, prettyButtonBadgeTextColor;
 
 @synthesize _prettyTabBarButtons = __prettyTabBarButtons, _originalTabBarButtons = __originalTabBarButtons;
@@ -126,6 +127,7 @@
     __originalTabBarButtons = [[NSMutableArray arrayWithCapacity:0] retain];
     self.prettyButtonHighlightedImages = nil;
     
+    self.prettyButtonHighlightCornerRadius = default_highlight_corner_radius;
     self.prettyButtonHighlightedImageGradientStartColor = default_highlighted_image_gradient_start_color;
     self.prettyButtonHighlightedImageGradientEndColor = default_highlighted_image_gradient_end_color;
     self.prettyButtonTitleFont = default_font;
@@ -366,6 +368,7 @@
             button.highlightedImage = [self _imageForPrettyButtonImagesOfIndex:i];
             button.highlightedImageGradientStartColor = self.prettyButtonHighlightedImageGradientStartColor;
             button.highlightedImageGradientEndColor = self.prettyButtonHighlightedImageGradientEndColor;
+            button.highlightCornerRadius = self.prettyButtonHighlightCornerRadius;
             
             button.selected = NO;
             button.badgeValue = item.badgeValue;

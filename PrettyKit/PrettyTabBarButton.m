@@ -40,7 +40,7 @@
 @synthesize title = _title, image = _image, badgeValue = _badgeValue;
 @synthesize highlightedImage, highlightedImageGradientStartColor, highlightedImageGradientEndColor;
 @synthesize textColor, font, highlightedTextColor;
-@synthesize highlightImage, highlightGradientStartColor, highlightGradientEndColor;
+@synthesize highlightImage, highlightGradientStartColor, highlightGradientEndColor, highlightCornerRadius;
 @synthesize textShadowOpacity, textShadowOffset;
 @synthesize badgeBorderColor, badgeGradientEndColor, badgeGradientStartColor, badgeFont, badgeShadowOffset, badgeShadowOpacity, badgeTextColor;
 
@@ -331,7 +331,7 @@
         } else {            
             
             [PrettyDrawing drawGradientRoundedRect:CGRectMake(2, 3, self.frame.size.width - 4, self.frame.size.height - 5) 
-                                      cornerRadius:3.0 
+                                      cornerRadius:self.highlightCornerRadius 
                                          fromColor:self.highlightGradientStartColor
                                            toColor:self.highlightGradientEndColor];
         }

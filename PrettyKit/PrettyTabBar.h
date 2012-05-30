@@ -86,6 +86,11 @@
  By default is `nil`. */
 @property (nonatomic, copy) NSArray *prettyButtonHighlightedImages;
 
+/** Specifies the corner radius for the highlight's gradient (when selected)
+ 
+ By default is `3.0`. */
+@property (readwrite) CGFloat prettyButtonHighlightCornerRadius;
+
 /** Specifies the start color for the gradient tint over the image when selected
  
  By default is `[UIColor colorWithRed:0.276 green:0.733 blue:1.000 alpha:1.000]`. */
