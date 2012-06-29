@@ -264,10 +264,10 @@
     
     // we should only change the status if its different
     
-    if (self.prettyTabBarButtons != prettyTabBarButtons_) {
+    if (prettyTabBarButtons != prettyTabBarButtons_) {
         
         // set the status of our internal representation
-        self.prettyTabBarButtons = prettyTabBarButtons_;
+        prettyTabBarButtons = prettyTabBarButtons_;
 
         [self _setupTabBarSubviews];
 
