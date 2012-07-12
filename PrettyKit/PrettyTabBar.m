@@ -66,7 +66,7 @@
 
 @implementation PrettyTabBar
 @synthesize upwardsShadowOpacity, downwardsShadowOpacity, gradientStartColor, gradientEndColor, separatorLineColor;
-@synthesize prettyTabBarButtons = _prettyTabBarButtons;
+@synthesize prettyTabBarButtons;
 
 @synthesize prettyButtonHighlightedImageGradientStartColor, prettyButtonHighlightedImageGradientEndColor, prettyButtonHighlightedImages;
 @synthesize prettyButtonTitleFont, prettyButtonTitleTextColor, prettyButtonTitleHighlightedTextColor, prettyButtonTitleTextShadowOpacity, prettyButtonTitleTextShadowOffset;
@@ -123,8 +123,8 @@
     self.separatorLineColor = default_separator_line_color;
     
     // pretty button stuff
-    __prettyTabBarButtons = [[NSMutableArray arrayWithCapacity:5] retain];
-    __originalTabBarButtons = [[NSMutableArray arrayWithCapacity:0] retain];
+    self._prettyTabBarButtons = [NSMutableArray arrayWithCapacity:5];
+    self._originalTabBarButtons = [NSMutableArray arrayWithCapacity:0];
     self.prettyButtonHighlightedImages = nil;
     
     self.prettyButtonHighlightCornerRadius = default_highlight_corner_radius;
@@ -193,7 +193,7 @@
 
 
 -(void)_setupTabBarSubviews {
-    if (_prettyTabBarButtons) {
+    if (self.prettyTabBarButtons) {
         // changing from original to pretty implementation       
         
         // remove views that are not prettytabbarbuttons
@@ -260,14 +260,14 @@
     }
 }
 
--(void)setPrettyTabBarButtons:(BOOL)prettyTabBarButtons {
+-(void)setPrettyTabBarButtons:(BOOL)prettyTabBarButtons_ {
     
     // we should only change the status if its different
     
-    if (_prettyTabBarButtons != prettyTabBarButtons) {
+    if (prettyTabBarButtons != prettyTabBarButtons_) {
         
         // set the status of our internal representation
-        _prettyTabBarButtons = prettyTabBarButtons;
+        prettyTabBarButtons = prettyTabBarButtons_;
 
         [self _setupTabBarSubviews];
 
