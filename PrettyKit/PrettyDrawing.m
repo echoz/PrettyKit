@@ -163,7 +163,6 @@ CGMutablePathRef PrettyKitCreateMutablePathForRoundedRect(CGRect rect, CGFloat r
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
     
     CGContextDrawLinearGradient(ctx, gradient, startPoint, endPoint, 0);
-    CGGradientRelease(gradient);
     
     CGContextRestoreGState(ctx);
 }
