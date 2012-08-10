@@ -66,7 +66,7 @@
 
 @implementation PrettyTabBar
 @synthesize upwardsShadowOpacity, downwardsShadowOpacity, gradientStartColor, gradientEndColor, separatorLineColor;
-@synthesize prettyTabBarButtons;
+@synthesize prettyTabBarButtons, prettyStretchedTabBarButtons;
 
 @synthesize prettyButtonHighlightedImageGradientStartColor, prettyButtonHighlightedImageGradientEndColor, prettyButtonHighlightedImages;
 @synthesize prettyButtonTitleFont, prettyButtonTitleTextColor, prettyButtonTitleHighlightedTextColor, prettyButtonTitleTextShadowOpacity, prettyButtonTitleTextShadowOffset;
@@ -115,6 +115,7 @@
     self.contentMode = UIViewContentModeRedraw;
 
     self.prettyTabBarButtons = NO;
+    self.prettyStretchedTabBarButtons = NO;
     
     self.upwardsShadowOpacity = default_upwards_shadow_opacity;
     self.downwardsShadowOpacity = default_downwards_shadow_opacity;
@@ -179,7 +180,6 @@
     [super setItems:items];
     
     [self _setupTabBarSubviews];
-    
     [self setNeedsLayout];
 }
 
@@ -187,7 +187,13 @@
     [super setItems:items animated:animated];
 
     [self _setupTabBarSubviews];
+    [self setNeedsLayout];
+}
+
+-(void)setSelectedItem:(UITabBarItem *)selectedItem {
+    [super setSelectedItem:selectedItem];
     
+    [self _setupTabBarSubviews];
     [self setNeedsLayout];
 }
 
@@ -218,6 +224,8 @@
             
             button = [[PrettyTabBarButton alloc] initWithTitle:item.title image:item.image tag:i];
             button.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+            button.stretchedButton = self.prettyStretchedTabBarButtons;
+            
             [button addTarget:self action:@selector(_prettyTabBarButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             
             if (item == self.selectedItem) {
@@ -346,7 +354,12 @@
                 break;
             
             button = [self._prettyTabBarButtons objectAtIndex:i];
-            button.frame = CGRectMake(i * (self.frame.size.width/[self.items count]), 0, (self.frame.size.width/[self.items count]), self.frame.size.height);
+            if (self.prettyStretchedTabBarButtons) {
+                button.frame = CGRectMake(i * (self.frame.size.width/[self.items count]), 0, (self.frame.size.width/[self.items count]) - 1, self.frame.size.height);
+            } else {
+                button.frame = CGRectMake(i * (self.frame.size.width/[self.items count]), 0.5, (self.frame.size.width/[self.items count]) - 1, self.frame.size.height);
+            }
+
             [self addSubview:button];
             
             // set button properties
@@ -369,6 +382,7 @@
             button.highlightedImageGradientStartColor = self.prettyButtonHighlightedImageGradientStartColor;
             button.highlightedImageGradientEndColor = self.prettyButtonHighlightedImageGradientEndColor;
             button.highlightCornerRadius = self.prettyButtonHighlightCornerRadius;
+            button.stretchedButton = self.prettyStretchedTabBarButtons;
             
             button.selected = NO;
             button.badgeValue = item.badgeValue;
@@ -395,7 +409,7 @@
         [self dropShadowOffset:CGSizeMake(0, 0) withOpacity:self.downwardsShadowOpacity];
     
     [PrettyDrawing drawGradient:rect fromColor:self.gradientStartColor toColor:self.gradientEndColor];
-    [PrettyDrawing drawLineAtHeight:0.5 rect:rect color:self.separatorLineColor width:2.5];
+    [PrettyDrawing drawLineAtHeight:0 rect:rect color:self.separatorLineColor width:0.5];
 }
 
 @end

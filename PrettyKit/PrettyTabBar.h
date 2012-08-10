@@ -72,6 +72,12 @@
 // Pretty Tab Bar Button Implementation & Customization
 /////////////////////////////////////////////////////////////////////////////
 
+/** Specifies that the PrettyTabBarButtons that should be used is of the iOS 6 styling 
+ that stretches from the bottom to the top of the bar
+
+ By default is NO. */
+@property (nonatomic) BOOL prettyStretchedTabBarButtons;
+
 /** Specifies that PrettyTabBarButtons should be used instead of the default UITabBarButtons
  
  By default is NO. */
