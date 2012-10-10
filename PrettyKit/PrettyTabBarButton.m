@@ -37,6 +37,7 @@
 @end
 
 @implementation PrettyTabBarButton
+@synthesize stretchedButton;
 @synthesize title = _title, image = _image, badgeValue = _badgeValue;
 @synthesize highlightedImage, highlightedImageGradientStartColor, highlightedImageGradientEndColor;
 @synthesize textColor, font, highlightedTextColor;
@@ -60,6 +61,8 @@
     
     self.opaque = NO;
     self.backgroundColor = [UIColor clearColor];
+
+    self.stretchedButton = NO;
     
 }
 
@@ -329,11 +332,16 @@
             [self.highlightImage drawInRect:CGRectMake(2, 1, self.frame.size.width - 2, self.frame.size.height - 1)];
             
         } else {            
-            
-            [PrettyDrawing drawGradientRoundedRect:CGRectMake(2, 3, self.frame.size.width - 4, self.frame.size.height - 5) 
-                                      cornerRadius:self.highlightCornerRadius 
-                                         fromColor:self.highlightGradientStartColor
-                                           toColor:self.highlightGradientEndColor];
+            if (self.stretchedButton) {
+                [PrettyDrawing drawGradient:CGRectMake(0, 0.5, self.frame.size.width, self.frame.size.height) fromColor:self.highlightGradientStartColor toColor:self.highlightGradientEndColor];
+                
+            } else {
+                [PrettyDrawing drawGradientRoundedRect:CGRectMake(2, 3, self.frame.size.width - 4, self.frame.size.height - 5)
+                                          cornerRadius:self.highlightCornerRadius
+                                             fromColor:self.highlightGradientStartColor
+                                               toColor:self.highlightGradientEndColor];
+
+            }
         }
     }
     

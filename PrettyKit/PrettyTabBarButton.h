@@ -29,6 +29,11 @@
 
 @interface PrettyTabBarButton : UIControl
 
+/** Specifies the tabbar button should be stretched, a la iOS 6 styling
+
+ By default is `NO`. */
+@property (readwrite) BOOL stretchedButton;
+
 /** Specifies the image to use when the Button is selected. If it is not specified, the button will use the normal image in a gradient tint that is specified.
  
  By default is `nil`. */
